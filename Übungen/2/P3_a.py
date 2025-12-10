@@ -67,7 +67,7 @@ def objective(params):
         sim.step()
         max_c=max(max_c,rsurf.kinetics.coverages[9])
 
-    ch4 = r.thermo['CH4'].X[0]
+    ch4 = r.phase['CH4'].X[0]
     return ch4  
     # return max_c
 

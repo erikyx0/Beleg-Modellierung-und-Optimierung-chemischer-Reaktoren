@@ -1,5 +1,15 @@
 import csv
 import cantera as ct
+import os 
+
+import warnings 
+
+warnings.filterwarnings(
+    "ignore",
+    message="ReactorSurface::syncState*"
+)
+
+os.chdir(os.path.dirname(__file__))
 
 # unit conversion factors to SI
 cm = 0.01
@@ -60,20 +70,20 @@ print('    distance       X_CH4        X_H2        X_CO')
 
 # create a new reactor
 gas.TDY = TDY
-r = ct.IdealGasReactor(gas, energy='off')
+r = ct.IdealGasReactor(gas, energy='off', clone = False)
 r.volume = rvol
 
 # create a reservoir to represent the reactor immediately upstream. Note
 # that the gas object is set already to the state of the upstream reactor
-upstream = ct.Reservoir(gas, name='upstream')
+upstream = ct.Reservoir(gas, name='upstream', clone = False)
 
 # create a reservoir for the reactor to exhaust into. The composition of
 # this reservoir is irrelevant.
-downstream = ct.Reservoir(gas, name='downstream')
+downstream = ct.Reservoir(gas, name='downstream', clone = False)
 
 # Add the reacting surface to the reactor. The area is set to the desired
 # catalyst area in the reactor.
-rsurf = ct.ReactorSurface(surf, r, A=cat_area)
+rsurf = ct.ReactorSurface(surf, r, A=cat_area, clone = False)
 
 # The mass flow rate into the reactor will be fixed by using a
 # MassFlowController object.
@@ -90,7 +100,7 @@ output_data = []
 
 for n in range(NReactors):
     # Set the state of the reservoir to match that of the previous reactor
-    gas.TDY = r.thermo.TDY
+    gas.TDY = r.phase.TDY
     upstream.syncState()
     sim.reinitialize()
     sim.advance_to_steady_state()
@@ -98,13 +108,14 @@ for n in range(NReactors):
 
     if n % 10 == 0:
         print('  {0:10f}  {1:10f}  {2:10f}  {3:10f}'.format(
-            dist, *r.thermo['CH4', 'H2', 'CO'].X))
+            dist, *r.phase['CH4', 'H2', 'CO'].X))
 
     # write the gas mole fractions and surface coverages vs. distance
     output_data.append(
-        [dist, r.T - 273.15, r.thermo.P / ct.one_atm]
-        + list(r.thermo.X)  # use r.thermo.X not gas.X
-        + list(rsurf.kinetics.coverages)  # use rsurf.kinetics.coverages not surf.coverages
+        [dist, r.T - 273.15, r.phase.P / ct.one_atm]
+        + list(r.phase.X)  # use r.phase.X not gas.X
+        
+        + list(rsurf.phase.coverages)  # use rsurf.kinetics.coverages not surf.coverages
     )
 
 with open(output_filename, 'w', newline="") as outfile:
