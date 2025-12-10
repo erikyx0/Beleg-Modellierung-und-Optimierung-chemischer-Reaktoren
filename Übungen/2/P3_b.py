@@ -67,8 +67,7 @@ def objective(params):
         sim.step()
         max_c=max(max_c,rsurf.kinetics.coverages[9])
 
-    ch4 = r.thermo['CH4'].X[0]
-    return ch4  
+    return max_c
     # return max_c
 
 # Bounds for parameters
@@ -129,7 +128,7 @@ ax2.set_ylim(diameter_min, diameter_max)
 fig1.tight_layout()  
 plt.title('Iterative Results')
 fig1.legend(loc="lower right", bbox_to_anchor=(1,0.5), bbox_transform=ax1.transAxes)
-plt.savefig('plot-Aufgabe1_a-v1.png', dpi=150)
+plt.savefig('plot-Aufgabe1_b-v1.png', dpi=150)
 
 fig2, ax3 = plt.subplots(figsize=(10, 6))
 
@@ -151,4 +150,4 @@ ax4.set_ylim(porosity_min, porosity_max)
 fig2.tight_layout()  
 plt.title('Iterative Results')
 fig2.legend(loc="lower right", bbox_to_anchor=(1,0.5), bbox_transform=ax3.transAxes)
-plt.savefig('plot-Aufgabe1_a-v2.png', dpi=150)
+plt.savefig('plot-Aufgabe1_b-v2.png', dpi=150)
