@@ -36,7 +36,7 @@ r = ct.FlowReactor(gas)
 r.area = area 
 r.surface_area_to_volume_ratio = cat_area_per_vol * porosity 
 r.mass_flow_rate = mass_flow_rate 
-r.energy_enabled = False 
+r.energy_enabled = False
 
 # reacting surface 
 rsurf = ct.ReactorSurface(surf, r) 
