@@ -169,3 +169,18 @@ class CSTRCascadeModel:
             return res["CH4"]
         except Exception:
             return 1e3
+
+    def objective_eps_constraint_Vcat(self, params, Vcat_max: float) -> float:
+        cat_area_per_vol, diameter_cm, porosity = params
+        try:
+            res = self.simulate(cat_area_per_vol, diameter_cm, porosity, return_profile=False)
+            ch4 = res["CH4"]
+            vcat = res["V_cat"]
+
+            if vcat <= Vcat_max:
+                return ch4
+
+            penalty = 1e3 * ((vcat - Vcat_max) / (Vcat_max + 1e-30)) ** 2
+            return ch4 + penalty
+        except Exception:
+            return 1e3

@@ -62,7 +62,7 @@ def main():
         updating="deferred",
     )
 
-    with open("../Auwertung/optimization_history.csv", "w", newline="") as f:
+    with open("../Auwertung/optimization_history_einkriteriell.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow([
             "iteration",

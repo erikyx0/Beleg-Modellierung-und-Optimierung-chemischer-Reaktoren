@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-CSV = "optimization_history.csv"
+CSV = "optimization_history_einkriteriell.csv"
 
 def plot_history(csv_path=CSV):
     df = pd.read_csv(csv_path)
