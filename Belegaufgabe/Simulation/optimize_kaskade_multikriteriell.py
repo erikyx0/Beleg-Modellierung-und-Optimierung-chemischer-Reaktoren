@@ -83,7 +83,7 @@ def main():
     length = 0.3 * cm
     mass_flow_rate = 1e-6
     yaml_file = "methane_pox_on_pt.yaml"
-    n_cstr = 5  # test; später hoch
+    n_cstr = 200  # test; später hoch
 
     model = CSTRCascadeModel(
         yaml_file=yaml_file,
@@ -116,7 +116,7 @@ def main():
     )
 
     algo = NSGA2(
-        pop_size=80,
+        pop_size=50,
         crossover=SBX(prob=0.9, eta=8),
         mutation=PM(eta=10),
         eliminate_duplicates=True,
