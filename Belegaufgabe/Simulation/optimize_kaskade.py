@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from scipy import optimize
 import cantera as ct
 from multiprocessing import freeze_support
+import csv
 
 from Kaskade_Klasse import CSTRCascadeModel, cm
 
@@ -42,9 +43,14 @@ def main():
     max_iter = 100
 
     def callback(xk, convergence=None):
-        if len(history) < max_iter:
-            # optional: store xk only; storing fx would cost extra evaluation unless you cache inside objective
-            history.append(xk.copy())
+        fx = model.objective_CH4(xk)  # besser: aus Cache holen, falls vorhanden
+        history.append([
+            len(history) + 1,  # iteration
+            fx,  # CH4
+            xk[0],  # A/V
+            xk[1],  # d
+            xk[2],  # porosity
+        ])
 
     solution = optimize.differential_evolution(
         model.objective_CH4,
@@ -55,6 +61,17 @@ def main():
         workers=-1,
         updating="deferred",
     )
+
+    with open("../Auwertung/optimization_history.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            "iteration",
+            "CH4",
+            "cat_area_per_vol_1_per_cm",
+            "diameter_cm",
+            "porosity",
+        ])
+        writer.writerows(history)
 
     print(solution)
     print("Optimum solution:")
@@ -67,3 +84,5 @@ def main():
 if __name__ == "__main__":
     freeze_support()  # safe on Windows; harmless otherwise
     main()
+
+
