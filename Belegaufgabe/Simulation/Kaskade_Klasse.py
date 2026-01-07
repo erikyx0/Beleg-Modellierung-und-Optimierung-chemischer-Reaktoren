@@ -151,9 +151,14 @@ class CSTRCascadeModel:
 
         ch4 = r.thermo["CH4"].X[0]
 
+        T_max = None
+        if profile is not None:
+            T_max = float(max(profile["T"]))
+
         out = {
             "CH4": float(ch4),
             "T_out": float(r.T),
+            "T_max": float(T_max) if T_max is not None else float(r.T),
             "P_out": float(r.thermo.P),
             "A_surf_stage": float(A_surf_stage),
             "V_stage": float(V_stage),
@@ -172,15 +177,22 @@ class CSTRCascadeModel:
 
     def objective_eps_constraint_Vcat(self, params, Vcat_max: float) -> float:
         cat_area_per_vol, diameter_cm, porosity = params
+
+        # geometrisches V_cat (robust!)
+        A_cs = np.pi / 4.0 * (diameter_cm * cm) ** 2
+        V_bed = A_cs * self.length_m
+        vcat = (1.0 - porosity) * V_bed
+
         try:
-            res = self.simulate(cat_area_per_vol, diameter_cm, porosity, return_profile=False)
-            ch4 = res["CH4"]
-            vcat = res["V_cat"]
-
-            if vcat <= Vcat_max:
-                return ch4
-
-            penalty = 1e3 * ((vcat - Vcat_max) / (Vcat_max + 1e-30)) ** 2
-            return ch4 + penalty
+            res = self.simulate(cat_area_per_vol, diameter_cm, porosity,
+                                return_profile=False)
+            ch4 = float(res["CH4"])
         except Exception:
-            return 1e3
+            return 100.0  # klar schlecht
+
+        if vcat <= Vcat_max:
+            return ch4
+
+        rel_violation = (vcat - Vcat_max) / (Vcat_max + 1e-30)
+        penalty = 50.0 * rel_violation ** 2
+        return ch4 + penalty

@@ -27,13 +27,14 @@ class CatMultiObjectiveProblem(Problem):
     """
 
     def __init__(self, model: CSTRCascadeModel, xl, xu,
-                 CH4_SCALE=1.0, VCAT_SCALE=1e-9, Vcat_max=None):
-        self.model = model
-        self.Vcat_max = Vcat_max
-        self.CH4_SCALE = float(CH4_SCALE)
-        self.VCAT_SCALE = float(VCAT_SCALE)
+                 CH4_SCALE=1.0, T_SCALE=1000.0, Tmax_allowed=None):
 
-        n_ieq = 1 if Vcat_max is not None else 0
+        self.model = model
+        self.CH4_SCALE = float(CH4_SCALE)
+        self.T_SCALE = float(T_SCALE)
+        self.Tmax_allowed = Tmax_allowed
+
+        n_ieq = 1 if Tmax_allowed is not None else 0
         super().__init__(
             n_var=3,
             n_obj=2,
@@ -45,25 +46,24 @@ class CatMultiObjectiveProblem(Problem):
     def _evaluate(self, X, out, *args, **kwargs):
         n = X.shape[0]
         F = np.empty((n, 2), dtype=float)
-        G = np.empty((n, 1), dtype=float) if self.Vcat_max is not None else None
+        G = np.empty((n, 1), dtype=float) if self.Tmax_allowed is not None else None
 
         for i in range(n):
             av, d_cm, eps = X[i, :]
             try:
-                res = self.model.simulate(av, d_cm, eps, return_profile=False)
+                # Für T_max brauchst du Profil / oder simulate gibt T_max direkt aus
+                res = self.model.simulate(av, d_cm, eps, return_profile=True)
                 ch4 = float(res["CH4"])
-                vcat = float(res["V_cat"])
+                tmax = float(res["T_max"])  # muss aus simulate() kommen
             except Exception:
-                # Differenzierende Strafe -> hilft aus Failure-Regionen rauszukommen
                 ch4 = 1e3
-                vcat = 1e3 + 1e-6 * (av + d_cm + eps)
+                tmax = 2e3 + 1e-6 * (av + d_cm + eps)
 
-            # objectives MUST be minimized
             F[i, 0] = ch4 / (self.CH4_SCALE + 1e-30)
-            F[i, 1] = vcat / (self.VCAT_SCALE + 1e-30)
+            F[i, 1] = tmax / (self.T_SCALE + 1e-30)
 
             if G is not None:
-                G[i, 0] = vcat - float(self.Vcat_max)
+                G[i, 0] = tmax - float(self.Tmax_allowed)
 
         out["F"] = F
         if G is not None:
@@ -83,7 +83,7 @@ def main():
     length = 0.3 * cm
     mass_flow_rate = 1e-6
     yaml_file = "methane_pox_on_pt.yaml"
-    n_cstr = 200  # test; später hoch
+    n_cstr = 25  # test; später hoch
 
     model = CSTRCascadeModel(
         yaml_file=yaml_file,
@@ -93,7 +93,7 @@ def main():
         mass_flow_rate_kg_s=mass_flow_rate,
         n_cstr=n_cstr,
         gas_comp="CH4:1, O2:0.6, AR:0.1",
-        energy_enabled=False,
+        energy_enabled=True,  # <-- WICHTIG
         surface_name="Pt_surf",
         gas_name="gas",
     )
@@ -104,15 +104,13 @@ def main():
 
     # Scaling (nur für Optimierung)
     CH4_SCALE = 1.0
-    VCAT_SCALE = 1e-9
-
-    # Optional hard constraint
-    Vcat_max = None  # z.B. 1e-9
+    T_SCALE = 1000.0  # K (nur Skalierung)
+    Tmax_allowed = None  # z.B. 1100.0 für harte Grenze
 
     problem = CatMultiObjectiveProblem(
         model, xl=xl, xu=xu,
-        CH4_SCALE=CH4_SCALE, VCAT_SCALE=VCAT_SCALE,
-        Vcat_max=Vcat_max
+        CH4_SCALE=CH4_SCALE, T_SCALE=T_SCALE,
+        Tmax_allowed=Tmax_allowed
     )
 
     algo = NSGA2(
@@ -121,7 +119,7 @@ def main():
         mutation=PM(eta=10),
         eliminate_duplicates=True,
     )
-    termination = get_termination("n_gen", 100)
+    termination = get_termination("n_gen", 20)
 
     res = minimize(problem, algo, termination, seed=1, verbose=True)
 
@@ -133,27 +131,21 @@ def main():
     # (because res.F is scaled!)
     # -----------------------------
     CH4_true = np.empty(X.shape[0], dtype=float)
-    Vcat_true = np.empty(X.shape[0], dtype=float)
-    fail = 0
+    Tmax_true = np.empty(X.shape[0], dtype=float)
 
     for i, (av, d_cm, eps) in enumerate(X):
-        # geometry-based V_cat (always available)
-        A_cs = (np.pi / 4.0) * (d_cm * cm) ** 2
-        V_bed = A_cs * length
-        vcat_geom = (1.0 - eps) * V_bed
-
         try:
-            r = model.simulate(av, d_cm, eps, return_profile=False)
+            r = model.simulate(av, d_cm, eps, return_profile=True)
             CH4_true[i] = float(r["CH4"])
+            Tmax_true[i] = float(r["T_max"])
         except Exception:
             CH4_true[i] = np.nan
-
-        Vcat_true[i] = float(vcat_geom)
+            Tmax_true[i] = np.nan
 
     print("\nDiagnostics (TRUE):")
-    print("  fails:", fail, "/", len(X))
+    #print("  fails:", fail, "/", len(X))
     print("  CH4 min/max:", np.nanmin(CH4_true), np.nanmax(CH4_true))
-    print("  Vcat min/max:", np.nanmin(Vcat_true), np.nanmax(Vcat_true))
+    #print("  Vcat min/max:", np.nanmin(Vcat_true), np.nanmax(Vcat_true))
 
     # -----------------------------
     # Export CSV (TRUE values)
@@ -161,19 +153,18 @@ def main():
     csv_path = os.path.join(out_dir, "pareto_pymoo_nsga2_TRUE.csv")
     with open(csv_path, "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["CH4_out", "V_cat_m3", "A_over_V_1_per_cm", "diameter_cm", "porosity"])
+        w.writerow(["CH4_out", "T_max_K", "A_over_V_1_per_cm", "diameter_cm", "porosity"])
         for i in range(len(X)):
-            w.writerow([CH4_true[i], Vcat_true[i], X[i, 0], X[i, 1], X[i, 2]])
+            w.writerow([CH4_true[i], Tmax_true[i], X[i, 0], X[i, 1], X[i, 2]])
 
     # -----------------------------
     # Plot Pareto (TRUE)
     # -----------------------------
     fig, ax = plt.subplots(figsize=(7.5, 5.0), constrained_layout=True)
-    ax.scatter(Vcat_true, CH4_true, s=28)
-    ax.set_xlabel("V_cat (m³)")
+    ax.scatter(Tmax_true, CH4_true, s=28)
+    ax.set_xlabel("T_max (K)")
     ax.set_ylabel("CH4_out (mol/mol)")
-    ax.grid(True, alpha=0.3)
-    ax.set_title("Pareto-Front (NSGA-II): CH4_out vs. V_cat")
+    ax.set_title("Pareto-Front (NSGA-II): CH4_out vs. T_max")
     fig.savefig(os.path.join(out_dir, "pareto_front_pymoo_TRUE.png"), dpi=200)
 
     print("\nSaved:")
