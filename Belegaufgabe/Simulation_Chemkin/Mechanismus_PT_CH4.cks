@@ -1,0 +1,21 @@
+#
+#Tue Jan 20 20:23:11 CET 2026
+FIT_TRANSPORT_PROPERTIES=0
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_TRAN_OUTPUT=
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_SURF_OUTPUT=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus_PT_CH4_surf.out
+IN_SURF_INPUT=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus\\grimech30_chem_PT.inp
+IN_THERM_DB=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus\\grimech30_thermo.dat
+Chemistry\ Set\ Name=Mechanismus_PT_CH4
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_SURF_ASC=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus_PT_CH4_surf.asc
+IN_LIQUID_DB=
+SYSTEM_FLAG=FALSE
+IN_TRANS_DB=
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_CHEM_ASC=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus_PT_CH4_gas.asc
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_XML_PARAMETERS=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus_PT_CH4.xml
+IN_CHEM_INPUT=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus\\grimech30_chem_PT.inp
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_SURF_SPECIES=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus_PT_CH4_surf.asu
+Chemistry\ Set\ Description=
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_CHEM_OUTPUT=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus_PT_CH4_gas.out
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_CHEM_SPECIES=\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin\\Mechanismus_PT_CH4_gas.asu
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__Run_Result=PREPROCESS_BAD
+\\\\zfs1.hrz.tu-freiberg.de\\ed67qowe\\home\\fak1pool\\Desktop\\Repos\\Belegaufgabe\\Simulation_Chemkin__OUT_TRAN_ASC=

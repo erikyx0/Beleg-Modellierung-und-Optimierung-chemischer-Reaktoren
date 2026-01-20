@@ -1,0 +1,1249 @@
+
+
+     *****************************************************************
+     *                   ANSYS Chemkin-Pro 2023 R1                   *
+     *                       SURF Application                        *
+     *                 SURFACE MECHANISM INTERPRETER                 *
+     *                 Copyright(c) 2023 ANSYS, Inc.                 *                
+     *Run Date and Time: Jan 20, 2026   20:23:11      60 min from UTC*
+     *****************************************************************
+
+
+
+                WORKING SPACE REQUIREMENTS
+                 PROVIDED        REQUIRED 
+ LOGICAL             3244           3244
+ INTEGER            44398          44398
+ REAL               26183          26183
+ CHARACTER           3429           3429
+
+This problem requires      0.200MB of memory for the REAL array.
+
+Initializing CHEMKIN Gas-phase Library a component of ANSYS Chemkin-Pro 2023 R1, Build date: Nov 17, 2022
+This and All Other CHEMKIN(R) Libraries are Copyright (c) 2023 Ansys, Inc.  Unauthorized use, distribution, or duplication is prohibited.This product is subject to U.S. laws governing export andre-export.  For full Legal Notice, see documentation.
+
+
+LICENSE INFORMATION: 
+ 
+
+LicNum: unknown                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+ -------------------------------------------------------------------------------
+ SPECIES                MOLECULAR                        ELEMENT COUNT
+ CONSIDERED             WEIGHT       Density    Nsites           O         H         C         N         AR        PT
+ -------------------------------------------------------------------------------
+
+ Gas phase species:
+   1. H2               2.0159E+00                                0         2         0         0         0         0
+   2. H                1.0080E+00                                0         1         0         0         0         0
+   3. O                1.5999E+01                                1         0         0         0         0         0
+   4. O2               3.1999E+01                                2         0         0         0         0         0
+   5. OH               1.7007E+01                                1         1         0         0         0         0
+   6. H2O              1.8015E+01                                1         2         0         0         0         0
+   7. HO2              3.3007E+01                                2         1         0         0         0         0
+   8. H2O2             3.4015E+01                                2         2         0         0         0         0
+   9. C                1.2011E+01                                0         0         1         0         0         0
+  10. CH               1.3019E+01                                0         1         1         0         0         0
+  11. CH2              1.4027E+01                                0         2         1         0         0         0
+  12. CH2(S)           1.4027E+01                                0         2         1         0         0         0
+  13. CH3              1.5035E+01                                0         3         1         0         0         0
+  14. CH4              1.6043E+01                                0         4         1         0         0         0
+  15. CO               2.8011E+01                                1         0         1         0         0         0
+  16. CO2              4.4010E+01                                2         0         1         0         0         0
+  17. HCO              2.9019E+01                                1         1         1         0         0         0
+  18. CH2O             3.0026E+01                                1         2         1         0         0         0
+  19. CH2OH            3.1034E+01                                1         3         1         0         0         0
+  20. CH3O             3.1034E+01                                1         3         1         0         0         0
+  21. CH3OH            3.2042E+01                                1         4         1         0         0         0
+  22. C2H              2.5030E+01                                0         1         2         0         0         0
+  23. C2H2             2.6038E+01                                0         2         2         0         0         0
+  24. C2H3             2.7046E+01                                0         3         2         0         0         0
+  25. C2H4             2.8054E+01                                0         4         2         0         0         0
+  26. C2H5             2.9062E+01                                0         5         2         0         0         0
+  27. C2H6             3.0070E+01                                0         6         2         0         0         0
+  28. HCCO             4.1030E+01                                1         1         2         0         0         0
+  29. CH2CO            4.2038E+01                                1         2         2         0         0         0
+  30. HCCOH            4.2038E+01                                1         2         2         0         0         0
+  31. N                1.4007E+01                                0         0         0         1         0         0
+  32. NH               1.5015E+01                                0         1         0         1         0         0
+  33. NH2              1.6023E+01                                0         2         0         1         0         0
+  34. NH3              1.7031E+01                                0         3         0         1         0         0
+  35. NNH              2.9021E+01                                0         1         0         2         0         0
+  36. NO               3.0006E+01                                1         0         0         1         0         0
+  37. NO2              4.6005E+01                                2         0         0         1         0         0
+  38. N2O              4.4013E+01                                1         0         0         2         0         0
+  39. HNO              3.1014E+01                                1         1         0         1         0         0
+  40. CN               2.6018E+01                                0         0         1         1         0         0
+  41. HCN              2.7026E+01                                0         1         1         1         0         0
+  42. H2CN             2.8034E+01                                0         2         1         1         0         0
+  43. HCNN             4.1033E+01                                0         1         1         2         0         0
+  44. HCNO             4.3025E+01                                1         1         1         1         0         0
+  45. HOCN             4.3025E+01                                1         1         1         1         0         0
+  46. HNCO             4.3025E+01                                1         1         1         1         0         0
+  47. NCO              4.2017E+01                                1         0         1         1         0         0
+  48. N2               2.8013E+01                                0         0         0         2         0         0
+  49. AR               3.9948E+01                                0         0         0         0         1         0
+  50. C3H7             4.3089E+01                                0         7         3         0         0         0
+  51. C3H8             4.4097E+01                                0         8         3         0         0         0
+  52. CH2CHO           4.3046E+01                                1         3         2         0         0         0
+  53. CH3CHO           4.4054E+01                                1         4         2         0         0         0
+ 
+ -------------------------------------------------------------------------------
+                                                      (k = A T**b exp(-E/RT))
+      SURFACE REACTIONS CONSIDERED                      A        b        E
+
+   1. 2O+M<=>O2+M                                    1.20E+17   -1.0        0.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+   2. H2/ 2.40/ H2O/15.40/ CH4/ 2.00/ CO/ 1.75/ CO2/ 3.60/ C2H6/ 3.00/ AR/  .83/                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.40/H2O/15.40/CH4/2.00/CO/1.75/CO2/3.60/C2H6/
+   3. O+H+M<=>OH+M                                   5.00E+17   -1.0        0.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+   4. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+   5. O+H2<=>H+OH                                    3.87E+04    2.7     6260.0
+   6. O+HO2<=>OH+O2                                  2.00E+13    0.0        0.0
+   7. O+H2O2<=>OH+HO2                                9.63E+06    2.0     4000.0
+   8. O+CH<=>H+CO                                    5.70E+13    0.0        0.0
+   9. O+CH2<=>H+HCO                                  8.00E+13    0.0        0.0
+  10. O+CH2(S)<=>H2+CO                               1.50E+13    0.0        0.0
+  11. O+CH2(S)<=>H+HCO                               1.50E+13    0.0        0.0
+  12. O+CH3<=>H+CH2O                                 5.06E+13    0.0        0.0
+  13. O+CH4<=>OH+CH3                                 1.02E+09    1.5     8600.0
+  14. O+CO(+M)<=>CO2(+M)                             1.80E+10    0.0     2385.0
+      Error finding stoichiometric coefficient...CO(
+      Error...undeclared species...CO(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CO2(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+  15.    LOW/ 6.020E+14     .000    3000.00/                                                                                                                                                                                                                             
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+  16. H2/2.00/ O2/6.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/3.50/ C2H6/3.00/ AR/ .50/                                                                                                                                                                                       
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/O2/6.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/3.50/
+      Error...undeclared duplicate to reaction number     2
+  17. O+HCO<=>OH+CO                                  3.00E+13    0.0        0.0
+  18. O+HCO<=>H+CO2                                  3.00E+13    0.0        0.0
+  19. O+CH2O<=>OH+HCO                                3.90E+13    0.0     3540.0
+  20. O+CH2OH<=>OH+CH2O                              1.00E+13    0.0        0.0
+  21. O+CH3O<=>OH+CH2O                               1.00E+13    0.0        0.0
+  22. O+CH3OH<=>OH+CH2OH                             3.88E+05    2.5     3100.0
+  23. O+CH3OH<=>OH+CH3O                              1.30E+05    2.5     5000.0
+  24. O+C2H<=>CH+CO                                  5.00E+13    0.0        0.0
+  25. O+C2H2<=>H+HCCO                                1.35E+07    2.0     1900.0
+  26. O+C2H2<=>OH+C2H                                4.60E+19   -1.4    28950.0
+  27. O+C2H2<=>CO+CH2                                6.94E+06    2.0     1900.0
+  28. O+C2H3<=>H+CH2CO                               3.00E+13    0.0        0.0
+  29. O+C2H4<=>CH3+HCO                               1.25E+07    1.8      220.0
+  30. O+C2H5<=>CH3+CH2O                              2.24E+13    0.0        0.0
+  31. O+C2H6<=>OH+C2H5                               8.98E+07    1.9     5690.0
+  32. O+HCCO<=>H+2CO                                 1.00E+14    0.0        0.0
+  33. O+CH2CO<=>OH+HCCO                              1.00E+13    0.0     8000.0
+  34. O+CH2CO<=>CH2+CO2                              1.75E+12    0.0     1350.0
+  35. O2+CO<=>O+CO2                                  2.50E+12    0.0    47800.0
+  36. O2+CH2O<=>HO2+HCO                              1.00E+14    0.0    40000.0
+  37. H+O2+M<=>HO2+M                                 2.80E+18   -0.9        0.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+  38. O2/ .00/ H2O/ .00/ CO/ .75/ CO2/1.50/ C2H6/1.50/ N2/ .00/ AR/ .00/                                                                                                                                                                                                 
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...O2/.00/H2O/.00/CO/.75/CO2/1.50/C2H6/1.50/N2/
+      Error...undeclared duplicate to reaction number     2
+  39. H+2O2<=>HO2+O2                                 2.08E+19   -1.2        0.0
+  40. H+O2+H2O<=>HO2+H2O                             1.13E+19   -0.8        0.0
+  41. H+O2+N2<=>HO2+N2                               2.60E+19   -1.2        0.0
+  42. H+O2+AR<=>HO2+AR                               7.00E+17   -0.8        0.0
+  43. H+O2<=>O+OH                                    2.65E+16   -0.7    17041.0
+  44. 2H+M<=>H2+M                                    1.00E+18   -1.0        0.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+  45. H2/ .00/ H2O/ .00/ CH4/2.00/ CO2/ .00/ C2H6/3.00/ AR/ .63/                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/.00/H2O/.00/CH4/2.00/CO2/.00/
+      Error...undeclared duplicate to reaction number     2
+  46. 2H+H2<=>2H2                                    9.00E+16   -0.6        0.0
+  47. 2H+H2O<=>H2+H2O                                6.00E+19   -1.2        0.0
+  48. 2H+CO2<=>H2+CO2                                5.50E+20   -2.0        0.0
+  49. H+OH+M<=>H2O+M                                 2.20E+22   -2.0        0.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+  50. H2/ .73/ H2O/3.65/ CH4/2.00/ C2H6/3.00/ AR/ .38/                                                                                                                                                                                                                   
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/.73/H2O/3.65/CH4/2.00/
+      Error...undeclared duplicate to reaction number     2
+  51. H+HO2<=>O+H2O                                  3.97E+12    0.0      671.0
+  52. H+HO2<=>O2+H2                                  4.48E+13    0.0     1068.0
+  53. H+HO2<=>2OH                                    8.40E+13    0.0      635.0
+  54. H+H2O2<=>HO2+H2                                1.21E+07    2.0     5200.0
+  55. H+H2O2<=>OH+H2O                                1.00E+13    0.0     3600.0
+  56. H+CH<=>C+H2                                    1.65E+14    0.0        0.0
+  57. H+CH2(+M)<=>CH3(+M)                            6.00E+14    0.0        0.0
+      Error finding stoichiometric coefficient...CH2(
+      Error...undeclared species...CH2(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH3(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+  58.      LOW  /  1.040E+26   -2.760   1600.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+  59.      TROE/   .5620  91.00  5836.00  8552.00/                                                                                                                                                                                                                       
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.5620
+      Error...undeclared duplicate to reaction number     2
+  60. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+  61. H+CH2(S)<=>CH+H2                               3.00E+13    0.0        0.0
+  62. H+CH3(+M)<=>CH4(+M)                            1.39E+16   -0.5      536.0
+      Error finding stoichiometric coefficient...CH3(
+      Error...undeclared species...CH3(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH4(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+  63.      LOW  /  2.620E+33   -4.760   2440.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+  64.      TROE/   .7830   74.00  2941.00  6964.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.783074.00
+      Error...undeclared duplicate to reaction number     2
+  65. H2/2.00/ H2O/6.00/ CH4/3.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/3.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+  66. H+CH4<=>CH3+H2                                 6.60E+08    1.6    10840.0
+  67. H+HCO(+M)<=>CH2O(+M)                           1.09E+12    0.5     -260.0
+      Error finding stoichiometric coefficient...HCO(
+      Error...undeclared species...HCO(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH2O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+  68.      LOW  /  2.470E+24   -2.570    425.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+  69.      TROE/   .7824  271.00  2755.00  6570.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.7824271.00
+      Error...undeclared duplicate to reaction number     2
+  70. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+  71. H+HCO<=>H2+CO                                  7.34E+13    0.0        0.0
+  72. H+CH2O(+M)<=>CH2OH(+M)                         5.40E+11    0.5     3600.0
+      Error finding stoichiometric coefficient...CH2O(
+      Error...undeclared species...CH2O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH2OH(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+  73.      LOW  /  1.270E+32   -4.820   6530.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+  74.      TROE/   .7187  103.00  1291.00  4160.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.7187103.00
+      Error...undeclared duplicate to reaction number     2
+  75. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/
+      Error...undeclared duplicate to reaction number     2
+  76. H+CH2O(+M)<=>CH3O(+M)                          5.40E+11    0.5     2600.0
+      Error finding stoichiometric coefficient...CH2O(
+      Error...undeclared species...CH2O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH3O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+  77.      LOW  /  2.200E+30   -4.800   5560.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+  78.      TROE/   .7580   94.00  1555.00  4200.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.758094.00
+      Error...undeclared duplicate to reaction number     2
+  79. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/
+      Error...undeclared duplicate to reaction number     2
+  80. H+CH2O<=>HCO+H2                                5.74E+07    1.9     2742.0
+  81. H+CH2OH(+M)<=>CH3OH(+M)                        1.06E+12    0.5       86.0
+      Error finding stoichiometric coefficient...CH2OH(
+      Error...undeclared species...CH2OH(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH3OH(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+  82.      LOW  /  4.360E+31   -4.650   5080.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+  83.      TROE/   .600  100.00  90000.0  10000.0 /                                                                                                                                                                                                                      
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.600100.00
+      Error...undeclared duplicate to reaction number     2
+  84. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/
+      Error...undeclared duplicate to reaction number     2
+  85. H+CH2OH<=>H2+CH2O                              2.00E+13    0.0        0.0
+  86. H+CH2OH<=>OH+CH3                               1.65E+11    0.7     -284.0
+  87. H+CH2OH<=>CH2(S)+H2O                           3.28E+13   -0.1      610.0
+  88. H+CH3O(+M)<=>CH3OH(+M)                         2.43E+12    0.5       50.0
+      Error finding stoichiometric coefficient...CH3O(
+      Error...undeclared species...CH3O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH3OH(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+  89.      LOW  /  4.660E+41   -7.440   14080.0/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+  90.      TROE/   .700  100.00  90000.0 10000.00 /                                                                                                                                                                                                                      
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.700100.00
+      Error...undeclared duplicate to reaction number     2
+  91. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/
+      Error...undeclared duplicate to reaction number     2
+  92. H+CH3O<=>H+CH2OH                               4.15E+07    1.6     1924.0
+  93. H+CH3O<=>H2+CH2O                               2.00E+13    0.0        0.0
+  94. H+CH3O<=>OH+CH3                                1.50E+12    0.5     -110.0
+  95. H+CH3O<=>CH2(S)+H2O                            2.62E+14   -0.2     1070.0
+  96. H+CH3OH<=>CH2OH+H2                             1.70E+07    2.1     4870.0
+  97. H+CH3OH<=>CH3O+H2                              4.20E+06    2.1     4870.0
+  98. H+C2H(+M)<=>C2H2(+M)                           1.00E+17   -1.0        0.0
+      Error finding stoichiometric coefficient...C2H(
+      Error...undeclared species...C2H(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...C2H2(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+  99.      LOW  /  3.750E+33   -4.800   1900.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 100.      TROE/   .6464  132.00  1315.00  5566.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.6464132.00
+      Error...undeclared duplicate to reaction number     2
+ 101. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 102. H+C2H2(+M)<=>C2H3(+M)                          5.60E+12    0.0     2400.0
+      Error finding stoichiometric coefficient...C2H2(
+      Error...undeclared species...C2H2(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...C2H3(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+ 103.      LOW  /  3.800E+40   -7.270   7220.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 104.      TROE/   .7507   98.50  1302.00  4167.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.750798.50
+      Error...undeclared duplicate to reaction number     2
+ 105. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 106. H+C2H3(+M)<=>C2H4(+M)                          6.08E+12    0.3      280.0
+      Error finding stoichiometric coefficient...C2H3(
+      Error...undeclared species...C2H3(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...C2H4(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+ 107.      LOW  /  1.400E+30   -3.860   3320.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 108.      TROE/   .7820  207.50  2663.00  6095.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.7820207.50
+      Error...undeclared duplicate to reaction number     2
+ 109. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 110. H+C2H3<=>H2+C2H2                               3.00E+13    0.0        0.0
+ 111. H+C2H4(+M)<=>C2H5(+M)                          5.40E+11    0.5     1820.0
+      Error finding stoichiometric coefficient...C2H4(
+      Error...undeclared species...C2H4(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...C2H5(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+ 112.      LOW  /  0.600E+42   -7.620   6970.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 113.      TROE/   .9753  210.00   984.00  4374.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.9753210.00
+      Error...undeclared duplicate to reaction number     2
+ 114. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 115. H+C2H4<=>C2H3+H2                               1.32E+06    2.5    12240.0
+ 116. H+C2H5(+M)<=>C2H6(+M)                          5.21E+17   -1.0     1580.0
+      Error finding stoichiometric coefficient...C2H5(
+      Error...undeclared species...C2H5(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...C2H6(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+ 117.      LOW  /  1.990E+41   -7.080   6685.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 118.      TROE/   .8422  125.00  2219.00  6882.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.8422125.00
+      Error...undeclared duplicate to reaction number     2
+ 119. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 120. H+C2H5<=>H2+C2H4                               2.00E+12    0.0        0.0
+ 121. H+C2H6<=>C2H5+H2                               1.15E+08    1.9     7530.0
+ 122. H+HCCO<=>CH2(S)+CO                             1.00E+14    0.0        0.0
+ 123. H+CH2CO<=>HCCO+H2                              5.00E+13    0.0     8000.0
+ 124. H+CH2CO<=>CH3+CO                               1.13E+13    0.0     3428.0
+ 125. H+HCCOH<=>H+CH2CO                              1.00E+13    0.0        0.0
+ 126. H2+CO(+M)<=>CH2O(+M)                           4.30E+07    1.5    79600.0
+      Error finding stoichiometric coefficient...CO(
+      Error...undeclared species...CO(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH2O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+ 127.      LOW  /  5.070E+27   -3.420  84350.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 128.      TROE/   .9320  197.00  1540.00 10300.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.9320197.00
+      Error...undeclared duplicate to reaction number     2
+ 129. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 130. OH+H2<=>H+H2O                                  2.16E+08    1.5     3430.0
+ 131. 2OH(+M)<=>H2O2(+M)                             7.40E+13   -0.4        0.0
+      Error...undeclared species...2OH(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...H2O2(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared duplicate to reaction number     2
+ 132.      LOW  /  2.300E+18    -.900  -1700.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 133.      TROE/   .7346   94.00  1756.00  5182.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.734694.00
+      Error...undeclared duplicate to reaction number     2
+ 134. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 135. 2OH<=>O+H2O                                    3.57E+04    2.4    -2110.0
+ 136. OH+HO2<=>O2+H2O                                1.45E+13    0.0     -500.0
+      Declared duplicate reaction...
+ 137. OH+H2O2<=>HO2+H2O                              2.00E+12    0.0      427.0
+      Declared duplicate reaction...
+ 138. OH+H2O2<=>HO2+H2O                              1.70E+18    0.0    29410.0
+      Declared duplicate reaction...
+ 139. OH+C<=>H+CO                                    5.00E+13    0.0        0.0
+ 140. OH+CH<=>H+HCO                                  3.00E+13    0.0        0.0
+ 141. OH+CH2<=>H+CH2O                                2.00E+13    0.0        0.0
+ 142. OH+CH2<=>CH+H2O                                1.13E+07    2.0     3000.0
+ 143. OH+CH2(S)<=>H+CH2O                             3.00E+13    0.0        0.0
+ 144. OH+CH3(+M)<=>CH3OH(+M)                         2.79E+18   -1.4     1330.0
+      Error finding stoichiometric coefficient...CH3(
+      Error...undeclared species...CH3(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH3OH(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+ 145.      LOW  /  4.000E+36   -5.920   3140.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 146.      TROE/   .4120  195.0  5900.00  6394.00/                                                                                                                                                                                                                       
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.4120
+      Error...undeclared duplicate to reaction number     2
+ 147. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 148. OH+CH3<=>CH2+H2O                               5.60E+07    1.6     5420.0
+ 149. OH+CH3<=>CH2(S)+H2O                            6.44E+17   -1.3     1417.0
+ 150. OH+CH4<=>CH3+H2O                               1.00E+08    1.6     3120.0
+ 151. OH+CO<=>H+CO2                                  4.76E+07    1.2       70.0
+ 152. OH+HCO<=>H2O+CO                                5.00E+13    0.0        0.0
+ 153. OH+CH2O<=>HCO+H2O                              3.43E+09    1.2     -447.0
+ 154. OH+CH2OH<=>H2O+CH2O                            5.00E+12    0.0        0.0
+ 155. OH+CH3O<=>H2O+CH2O                             5.00E+12    0.0        0.0
+ 156. OH+CH3OH<=>CH2OH+H2O                           1.44E+06    2.0     -840.0
+ 157. OH+CH3OH<=>CH3O+H2O                            6.30E+06    2.0     1500.0
+ 158. OH+C2H<=>H+HCCO                                2.00E+13    0.0        0.0
+ 159. OH+C2H2<=>H+CH2CO                              2.18E-04    4.5    -1000.0
+ 160. OH+C2H2<=>H+HCCOH                              5.04E+05    2.3    13500.0
+ 161. OH+C2H2<=>C2H+H2O                              3.37E+07    2.0    14000.0
+ 162. OH+C2H2<=>CH3+CO                               4.83E-04    4.0    -2000.0
+ 163. OH+C2H3<=>H2O+C2H2                             5.00E+12    0.0        0.0
+ 164. OH+C2H4<=>C2H3+H2O                             3.60E+06    2.0     2500.0
+ 165. OH+C2H6<=>C2H5+H2O                             3.54E+06    2.1      870.0
+ 166. OH+CH2CO<=>HCCO+H2O                            7.50E+12    0.0     2000.0
+ 167. 2HO2<=>O2+H2O2                                 1.30E+11    0.0    -1630.0
+      Declared duplicate reaction...
+ 168. 2HO2<=>O2+H2O2                                 4.20E+14    0.0    12000.0
+      Declared duplicate reaction...
+ 169. HO2+CH2<=>OH+CH2O                              2.00E+13    0.0        0.0
+ 170. HO2+CH3<=>O2+CH4                               1.00E+12    0.0        0.0
+ 171. HO2+CH3<=>OH+CH3O                              3.78E+13    0.0        0.0
+ 172. HO2+CO<=>OH+CO2                                1.50E+14    0.0    23600.0
+ 173. HO2+CH2O<=>HCO+H2O2                            5.60E+06    2.0    12000.0
+ 174. C+O2<=>O+CO                                    5.80E+13    0.0      576.0
+ 175. C+CH2<=>H+C2H                                  5.00E+13    0.0        0.0
+ 176. C+CH3<=>H+C2H2                                 5.00E+13    0.0        0.0
+ 177. CH+O2<=>O+HCO                                  6.71E+13    0.0        0.0
+ 178. CH+H2<=>H+CH2                                  1.08E+14    0.0     3110.0
+ 179. CH+H2O<=>H+CH2O                                5.71E+12    0.0     -755.0
+ 180. CH+CH2<=>H+C2H2                                4.00E+13    0.0        0.0
+ 181. CH+CH3<=>H+C2H3                                3.00E+13    0.0        0.0
+ 182. CH+CH4<=>H+C2H4                                6.00E+13    0.0        0.0
+ 183. CH+CO(+M)<=>HCCO(+M)                           5.00E+13    0.0        0.0
+      Error finding stoichiometric coefficient...CO(
+      Error...undeclared species...CO(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...HCCO(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+ 184.      LOW  /  2.690E+28   -3.740   1936.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 185.      TROE/   .5757  237.00  1652.00  5069.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.5757237.00
+      Error...undeclared duplicate to reaction number     2
+ 186. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 187. CH+CO2<=>HCO+CO                                1.90E+14    0.0    15792.0
+ 188. CH+CH2O<=>H+CH2CO                              9.46E+13    0.0     -515.0
+ 189. CH+HCCO<=>CO+C2H2                              5.00E+13    0.0        0.0
+ 190. CH2+O2=>OH+H+CO                                5.00E+12    0.0     1500.0
+ 191. CH2+H2<=>H+CH3                                 5.00E+05    2.0     7230.0
+ 192. 2CH2<=>H2+C2H2                                 1.60E+15    0.0    11944.0
+ 193. CH2+CH3<=>H+C2H4                               4.00E+13    0.0        0.0
+ 194. CH2+CH4<=>2CH3                                 2.46E+06    2.0     8270.0
+ 195. CH2+CO(+M)<=>CH2CO(+M)                         8.10E+11    0.5     4510.0
+      Error finding stoichiometric coefficient...CO(
+      Error...undeclared species...CO(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH2CO(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+ 196.      LOW  /  2.690E+33   -5.110   7095.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 197.      TROE/   .5907  275.00  1226.00  5185.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.5907275.00
+      Error...undeclared duplicate to reaction number     2
+ 198. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 199. CH2+HCCO<=>C2H3+CO                             3.00E+13    0.0        0.0
+ 200. CH2(S)+N2<=>CH2+N2                             1.50E+13    0.0      600.0
+ 201. CH2(S)+AR<=>CH2+AR                             9.00E+12    0.0      600.0
+ 202. CH2(S)+O2<=>H+OH+CO                            2.80E+13    0.0        0.0
+ 203. CH2(S)+O2<=>CO+H2O                             1.20E+13    0.0        0.0
+ 204. CH2(S)+H2<=>CH3+H                              7.00E+13    0.0        0.0
+ 205. CH2(S)+H2O(+M)<=>CH3OH(+M)                     4.82E+17   -1.2     1145.0
+      Error finding stoichiometric coefficient...H2O(
+      Error...undeclared species...H2O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...CH3OH(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+ 206.      LOW  /  1.880E+38   -6.360   5040.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 207.      TROE/   .6027  208.00  3922.00  10180.0 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.6027208.00
+      Error...undeclared duplicate to reaction number     2
+ 208. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 209. CH2(S)+H2O<=>CH2+H2O                           3.00E+13    0.0        0.0
+ 210. CH2(S)+CH3<=>H+C2H4                            1.20E+13    0.0     -570.0
+ 211. CH2(S)+CH4<=>2CH3                              1.60E+13    0.0     -570.0
+ 212. CH2(S)+CO<=>CH2+CO                             9.00E+12    0.0        0.0
+ 213. CH2(S)+CO2<=>CH2+CO2                           7.00E+12    0.0        0.0
+ 214. CH2(S)+CO2<=>CO+CH2O                           1.40E+13    0.0        0.0
+ 215. CH2(S)+C2H6<=>CH3+C2H5                         4.00E+13    0.0     -550.0
+ 216. CH3+O2<=>O+CH3O                                3.56E+13    0.0    30480.0
+ 217. CH3+O2<=>OH+CH2O                               2.31E+12    0.0    20315.0
+ 218. CH3+H2O2<=>HO2+CH4                             2.45E+04    2.5     5180.0
+ 219. 2CH3(+M)<=>C2H6(+M)                            6.77E+16   -1.2      654.0
+      Error...undeclared species...2CH3(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...C2H6(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared duplicate to reaction number     2
+ 220.      LOW  /  3.400E+41   -7.030   2762.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 221.      TROE/   .6190  73.20  1180.00  9999.00 /                                                                                                                                                                                                                      
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.619073.20
+      Error...undeclared duplicate to reaction number     2
+ 222. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 223. 2CH3<=>H+C2H5                                  6.84E+12    0.1    10600.0
+ 224. CH3+HCO<=>CH4+CO                               2.65E+13    0.0        0.0
+ 225. CH3+CH2O<=>HCO+CH4                             3.32E+03    2.8     5860.0
+ 226. CH3+CH3OH<=>CH2OH+CH4                          3.00E+07    1.5     9940.0
+ 227. CH3+CH3OH<=>CH3O+CH4                           1.00E+07    1.5     9940.0
+ 228. CH3+C2H4<=>C2H3+CH4                            2.27E+05    2.0     9200.0
+ 229. CH3+C2H6<=>C2H5+CH4                            6.14E+06    1.7    10450.0
+ 230. HCO+H2O<=>H+CO+H2O                             1.50E+18   -1.0    17000.0
+ 231. HCO+M<=>H+CO+M                                 1.87E+17   -1.0    17000.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+ 232. H2/2.00/ H2O/ .00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/.00/CH4/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 233. HCO+O2<=>HO2+CO                                1.34E+13    0.0      400.0
+ 234. CH2OH+O2<=>HO2+CH2O                            1.80E+13    0.0      900.0
+ 235. CH3O+O2<=>HO2+CH2O                             4.28E-13    7.6    -3530.0
+ 236. C2H+O2<=>HCO+CO                                1.00E+13    0.0     -755.0
+ 237. C2H+H2<=>H+C2H2                                5.68E+10    0.9     1993.0
+ 238. C2H3+O2<=>HCO+CH2O                             4.58E+16   -1.4     1015.0
+ 239. C2H4(+M)<=>H2+C2H2(+M)                         8.00E+12    0.4    86770.0
+      Error...undeclared species...C2H4(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error finding stoichiometric coefficient...C2H2(
+      Error...undeclared species...C2H2(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number   126
+ 240.      LOW  /  1.580E+51   -9.300  97800.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 241.      TROE/   .7345  180.00  1035.00  5417.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.7345180.00
+      Error...undeclared duplicate to reaction number     2
+ 242. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 243. C2H5+O2<=>HO2+C2H4                             8.40E+11    0.0     3875.0
+ 244. HCCO+O2<=>OH+2CO                               3.20E+12    0.0      854.0
+ 245. 2HCCO<=>2CO+C2H2                               1.00E+13    0.0        0.0
+ 246. N+NO<=>N2+O                                    2.70E+13    0.0      355.0
+ 247. N+O2<=>NO+O                                    9.00E+09    1.0     6500.0
+ 248. N+OH<=>NO+H                                    3.36E+13    0.0      385.0
+ 249. N2O+O<=>N2+O2                                  1.40E+12    0.0    10810.0
+ 250. N2O+O<=>2NO                                    2.90E+13    0.0    23150.0
+ 251. N2O+H<=>N2+OH                                  3.87E+14    0.0    18880.0
+ 252. N2O+OH<=>N2+HO2                                2.00E+12    0.0    21060.0
+ 253. N2O(+M)<=>N2+O(+M)                             7.91E+10    0.0    56020.0
+      Error...undeclared species...N2O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error finding stoichiometric coefficient...O(
+      Error...undeclared species...O(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+ 254.      LOW  /  6.370E+14     .000  56640.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 255. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .625/                                                                                                                                                                                               
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 256. HO2+NO<=>NO2+OH                                2.11E+12    0.0     -480.0
+ 257. NO+O+M<=>NO2+M                                 1.06E+20   -1.4        0.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+ 258. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 259. NO2+O<=>NO+O2                                  3.90E+12    0.0     -240.0
+ 260. NO2+H<=>NO+OH                                  1.32E+14    0.0      360.0
+ 261. NH+O<=>NO+H                                    4.00E+13    0.0        0.0
+ 262. NH+H<=>N+H2                                    3.20E+13    0.0      330.0
+ 263. NH+OH<=>HNO+H                                  2.00E+13    0.0        0.0
+ 264. NH+OH<=>N+H2O                                  2.00E+09    1.2        0.0
+ 265. NH+O2<=>HNO+O                                  4.61E+05    2.0     6500.0
+ 266. NH+O2<=>NO+OH                                  1.28E+06    1.5      100.0
+ 267. NH+N<=>N2+H                                    1.50E+13    0.0        0.0
+ 268. NH+H2O<=>HNO+H2                                2.00E+13    0.0    13850.0
+ 269. NH+NO<=>N2+OH                                  2.16E+13   -0.2        0.0
+ 270. NH+NO<=>N2O+H                                  3.65E+14   -0.5        0.0
+ 271. NH2+O<=>OH+NH                                  3.00E+12    0.0        0.0
+ 272. NH2+O<=>H+HNO                                  3.90E+13    0.0        0.0
+ 273. NH2+H<=>NH+H2                                  4.00E+13    0.0     3650.0
+ 274. NH2+OH<=>NH+H2O                                9.00E+07    1.5     -460.0
+ 275. NNH<=>N2+H                                     3.30E+08    0.0        0.0
+ 276. NNH+M<=>N2+H+M                                 1.30E+14   -0.1     4980.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error...undeclared duplicate to reaction number   275
+ 277. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 278. NNH+O2<=>HO2+N2                                5.00E+12    0.0        0.0
+ 279. NNH+O<=>OH+N2                                  2.50E+13    0.0        0.0
+ 280. NNH+O<=>NH+NO                                  7.00E+13    0.0        0.0
+ 281. NNH+H<=>H2+N2                                  5.00E+13    0.0        0.0
+ 282. NNH+OH<=>H2O+N2                                2.00E+13    0.0        0.0
+ 283. NNH+CH3<=>CH4+N2                               2.50E+13    0.0        0.0
+ 284. H+NO+M<=>HNO+M                                 4.48E+19   -1.3      740.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+ 285. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 286. HNO+O<=>NO+OH                                  2.50E+13    0.0        0.0
+ 287. HNO+H<=>H2+NO                                  9.00E+11    0.7      660.0
+ 288. HNO+OH<=>NO+H2O                                1.30E+07    1.9     -950.0
+ 289. HNO+O2<=>HO2+NO                                1.00E+13    0.0    13000.0
+ 290. CN+O<=>CO+N                                    7.70E+13    0.0        0.0
+ 291. CN+OH<=>NCO+H                                  4.00E+13    0.0        0.0
+ 292. CN+H2O<=>HCN+OH                                8.00E+12    0.0     7460.0
+ 293. CN+O2<=>NCO+O                                  6.14E+12    0.0     -440.0
+ 294. CN+H2<=>HCN+H                                  2.95E+05    2.5     2240.0
+ 295. NCO+O<=>NO+CO                                  2.35E+13    0.0        0.0
+ 296. NCO+H<=>NH+CO                                  5.40E+13    0.0        0.0
+ 297. NCO+OH<=>NO+H+CO                               2.50E+12    0.0        0.0
+ 298. NCO+N<=>N2+CO                                  2.00E+13    0.0        0.0
+ 299. NCO+O2<=>NO+CO2                                2.00E+12    0.0    20000.0
+ 300. NCO+M<=>N+CO+M                                 3.10E+14    0.0    54050.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+ 301. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 302. NCO+NO<=>N2O+CO                                1.90E+17   -1.5      740.0
+ 303. NCO+NO<=>N2+CO2                                3.80E+18   -2.0      800.0
+ 304. HCN+M<=>H+CN+M                                 1.04E+29   -3.3   126600.0
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+      Error finding stoichiometric coefficient...M
+      Error...undeclared species...M
+ 305. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 306. HCN+O<=>NCO+H                                  2.03E+04    2.6     4980.0
+ 307. HCN+O<=>NH+CO                                  5.07E+03    2.6     4980.0
+ 308. HCN+O<=>CN+OH                                  3.91E+09    1.6    26600.0
+ 309. HCN+OH<=>HOCN+H                                1.10E+06    2.0    13370.0
+ 310. HCN+OH<=>HNCO+H                                4.40E+03    2.3     6400.0
+ 311. HCN+OH<=>NH2+CO                                1.60E+02    2.6     9000.0
+ 312. H+HCN(+M)<=>H2CN(+M)                           3.30E+13    0.0        0.0
+      Error finding stoichiometric coefficient...HCN(
+      Error...undeclared species...HCN(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...H2CN(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number    57
+ 313.       LOW /  1.400E+26   -3.400    1900.00/                                                                                                                                                                                                                        
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 314. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ .70/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 315. H2CN+N<=>N2+CH2                                6.00E+13    0.0      400.0
+ 316. C+N2<=>CN+N                                    6.30E+13    0.0    46020.0
+ 317. CH+N2<=>HCN+N                                  3.12E+09    0.9    20130.0
+ 318. CH+N2(+M)<=>HCNN(+M)                           3.10E+12    0.1        0.0
+      Error finding stoichiometric coefficient...N2(
+      Error...undeclared species...N2(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...undeclared species...HCNN(
+      Error finding stoichiometric coefficient...M)
+      Error...undeclared species...M)
+      Error...reaction does not balance in elements/mass...
+      Error...undeclared duplicate to reaction number   183
+ 319.      LOW  /  1.300E+25   -3.160    740.00/                                                                                                                                                                                                                         
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...LOW/
+      Error...undeclared duplicate to reaction number     2
+ 320.      TROE/   .6670  235.00  2117.00  4536.00 /                                                                                                                                                                                                                     
+      Error...no delimeter =, <=>, or => found....
+      Error...undeclared species...TROE/.6670235.00
+      Error...undeclared duplicate to reaction number     2
+ 321. H2/2.00/ H2O/6.00/ CH4/2.00/ CO/1.50/ CO2/2.00/ C2H6/3.00/ AR/ 1.0/                                                                                                                                                                                                
+      Error...no delimeter =, <=>, or => found....
+      Error...pre-exponential must be positive...
+      Error...undeclared species...H2/2.00/H2O/6.00/CH4/2.00/CO/1.50/CO2/2.00/
+      Error...undeclared duplicate to reaction number     2
+ 322. CH2+N2<=>HCN+NH                                1.00E+13    0.0    74000.0
+ 323. CH2(S)+N2<=>NH+HCN                             1.00E+11    0.0    65000.0
+ 324. C+NO<=>CN+O                                    1.90E+13    0.0        0.0
+ 325. C+NO<=>CO+N                                    2.90E+13    0.0        0.0
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Declared duplicate reaction...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+ Error...more than  10 continuation lines...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+  Error...Reaction dimension too small, IDIM must be increased...
+      Units for this reaction are...A units mole-cm-sec-K, E units cal/mole
+
+ UNITS for the preceding reactions (unless otherwise noted):
+       A units mole-cm-sec-K, E units cal/mole
+ 
+      Error...no duplicated declared for reaction no.  136
+      Error...no duplicated declared for reaction no.  325
+
+
+WARNING...THERE IS AN ERROR IN THE SURFACE LINKFILE
+          DUE TO SURFACE MECHANISM INPUT ERRORS.
+
+ WORKING SPACE REQUIREMENTS ARE
+    INTEGER:     9643
+    REAL:        6592
+    CHARACTER:     61
+
+***NOTE:  There are WARNING messages in the printout above***
+
+***NOTE:  There are ERROR messages in the printout above***
+
+ Total CPUtime: 1 second or less
+
+Failure on Surface Kinetics processing
+
