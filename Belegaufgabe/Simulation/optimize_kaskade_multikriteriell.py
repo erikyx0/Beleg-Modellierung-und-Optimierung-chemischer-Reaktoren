@@ -83,7 +83,7 @@ def main():
     length = 0.3 * cm
     mass_flow_rate = 1e-6
     yaml_file = "methane_pox_on_pt.yaml"
-    n_cstr = 25  # test; später hoch
+    n_cstr = 200  # test; später hoch
 
     model = CSTRCascadeModel(
         yaml_file=yaml_file,
@@ -119,7 +119,7 @@ def main():
         mutation=PM(eta=10),
         eliminate_duplicates=True,
     )
-    termination = get_termination("n_gen", 20)
+    termination = get_termination("n_gen", 30)
 
     res = minimize(problem, algo, termination, seed=1, verbose=True)
 
