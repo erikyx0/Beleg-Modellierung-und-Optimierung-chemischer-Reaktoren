@@ -136,7 +136,7 @@ def main():
         mutation=PM(eta=10),
         eliminate_duplicates=True,
     )
-    termination = get_termination("n_gen", 10)
+    termination = get_termination("n_gen", 50)
 
     res = minimize(problem, algo, termination, seed=1, verbose=True)
 

@@ -9,7 +9,7 @@ colors = [
     "#8172B2",  # soft purple
     "#937860",  # warm brown
     "#64B5CD",  # calm cyan
-    "#CCB974",  # soft olive
+    "#7d7d7d",  # gray
 ]
 
 
@@ -24,8 +24,29 @@ pareto_Vcat_out = df_pareto["Vcat_m3"]
 all_Vcat_out = df_all["Vcat_m3"]
 
 
-plt.scatter(all_ch4_out, all_Vcat_out, label = "Alle Punkte", color = "blue", marker = "x")
-plt.scatter(pareto_ch4_out, pareto_Vcat_out, label = "Pareto-Front", color = "red", marker="x")
+plt.scatter(
+    all_ch4_out,
+    all_Vcat_out,
+    label="Alle Punkte",
+    color=colors[-1],
+    marker="+",
+    s=20            # klein
+)
+
+plt.scatter(
+    pareto_ch4_out,
+    pareto_Vcat_out,
+    label="Pareto-Front",
+    color="red",
+    marker="x",
+    s=20            # größer, hervorheben
+)
+plt.xlabel(r"CH$_4$-out")
+plt.ylabel("Katalysatorvolumen")
+
+plt.xlim(0,0.003)
+plt.ylim(1e-7,4.5e-7)
+
 plt.grid()
-plt.legend()
+plt.legend(loc="upper right")
 plt.show()
