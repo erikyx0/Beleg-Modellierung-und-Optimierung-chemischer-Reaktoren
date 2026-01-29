@@ -16,25 +16,31 @@ from pymoo.operators.mutation.pm import PM
 
 from Kaskade_Klasse import CSTRCascadeModel, cm
 
+ct.make_deprecation_warnings_fatal()  # nur falls du solche Meldungen hast        # 0 = möglichst leise
 
 class CatMultiObjectiveProblem(Problem):
     """
-    Minimize (scaled):
-      f1 = CH4 / CH4_SCALE
-      f2 = V_cat / VCAT_SCALE
+    Minimize:
+      f1 = CH4_out
+      f2 = V_cat
     Optional constraint:
-      V_cat <= Vcat_max  ->  G = V_cat - Vcat_max <= 0
+      T_max <= Tmax_allowed  ->  G = T_max - Tmax_allowed <= 0
     """
 
-    def __init__(self, model: CSTRCascadeModel, xl, xu,
-                 CH4_SCALE=1.0, T_SCALE=1000.0, Tmax_allowed=None):
-
+    def __init__(self, model: CSTRCascadeModel, xl, xu, Tmax_allowed=None):
         self.model = model
-        self.CH4_SCALE = float(CH4_SCALE)
-        self.T_SCALE = float(T_SCALE)
         self.Tmax_allowed = Tmax_allowed
 
+        self.cache = {}
+
+        # <<< NEU: Logs für ALLE Auswertungen >>>
+        self.log_X = []       # [av, d_cm, eps]
+        self.log_CH4 = []
+        self.log_Tmax = []
+        self.log_Vcat = []
+
         n_ieq = 1 if Tmax_allowed is not None else 0
+
         super().__init__(
             n_var=3,
             n_obj=2,
@@ -43,6 +49,9 @@ class CatMultiObjectiveProblem(Problem):
             xu=np.array(xu, dtype=float),
         )
 
+        # optional cache
+        self.cache = {}
+
     def _evaluate(self, X, out, *args, **kwargs):
         n = X.shape[0]
         F = np.empty((n, 2), dtype=float)
@@ -50,20 +59,35 @@ class CatMultiObjectiveProblem(Problem):
 
         for i in range(n):
             av, d_cm, eps = X[i, :]
+
+            # Objective 2: Vcat purely geometric
+            vcat = self.model.Vcat(d_cm, eps)
+
+            # Objective 1 + optional constraint needs simulation
+            key = (round(av, 6), round(d_cm, 6), round(eps, 6))
             try:
-                # Für T_max brauchst du Profil / oder simulate gibt T_max direkt aus
-                res = self.model.simulate(av, d_cm, eps, return_profile=True)
-                ch4 = float(res["CH4"])
-                tmax = float(res["T_max"])  # muss aus simulate() kommen
+                if key in self.cache:
+                    ch4, tmax = self.cache[key]
+                else:
+                    res = self.model.simulate(av, d_cm, eps, return_profile=False)
+                    ch4 = float(res["CH4"])
+                    tmax = float(res["T_max"])
+                    self.cache[key] = (ch4, tmax)
             except Exception:
                 ch4 = 1e3
-                tmax = 2e3 + 1e-6 * (av + d_cm + eps)
+                tmax = 1e9
 
-            F[i, 0] = ch4 / (self.CH4_SCALE + 1e-30)
-            F[i, 1] = tmax / (self.T_SCALE + 1e-30)
+            F[i, 0] = ch4
+            F[i, 1] = vcat
 
             if G is not None:
                 G[i, 0] = tmax - float(self.Tmax_allowed)
+
+            # --- LOG ALL EVALUATED POINTS ---
+            self.log_X.append([av, d_cm, eps])
+            self.log_CH4.append(ch4)
+            self.log_Tmax.append(tmax)
+            self.log_Vcat.append(vcat)
 
         out["F"] = F
         if G is not None:
@@ -102,16 +126,9 @@ def main():
     xl = [1000.0, 1.0, 0.2]
     xu = [2000.0, 3.0, 0.5]
 
-    # Scaling (nur für Optimierung)
-    CH4_SCALE = 1.0
-    T_SCALE = 1000.0  # K (nur Skalierung)
-    Tmax_allowed = None  # z.B. 1100.0 für harte Grenze
+    Tmax_allowed = 2800.0  # z.B. als harte Grenze; oder None
 
-    problem = CatMultiObjectiveProblem(
-        model, xl=xl, xu=xu,
-        CH4_SCALE=CH4_SCALE, T_SCALE=T_SCALE,
-        Tmax_allowed=Tmax_allowed
-    )
+    problem = CatMultiObjectiveProblem(model, xl=xl, xu=xu, Tmax_allowed=Tmax_allowed)
 
     algo = NSGA2(
         pop_size=50,
@@ -119,7 +136,7 @@ def main():
         mutation=PM(eta=10),
         eliminate_duplicates=True,
     )
-    termination = get_termination("n_gen", 30)
+    termination = get_termination("n_gen", 10)
 
     res = minimize(problem, algo, termination, seed=1, verbose=True)
 
@@ -171,6 +188,40 @@ def main():
     print("  CSV :", csv_path)
     print("  PNG :", os.path.join(out_dir, "pareto_front_pymoo_TRUE.png"))
 
+    X = res.X
+    F = res.F  # jetzt TRUE: [CH4_out, Vcat]
+
+    csv_path = os.path.join(out_dir, "pareto_CH4_vs_Vcat.csv")
+    with open(csv_path, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["CH4_out", "Vcat_m3", "A_over_V_1_per_cm", "diameter_cm", "porosity"])
+        for i in range(len(X)):
+            w.writerow([F[i, 0], F[i, 1], X[i, 0], X[i, 1], X[i, 2]])
+
+    csv_all = os.path.join(out_dir, "all_evaluated_points.csv")
+
+    with open(csv_all, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow([
+            "CH4_out",
+            "T_max_K",
+            "Vcat_m3",
+            "A_over_V_1_per_cm",
+            "diameter_cm",
+            "porosity"
+        ])
+
+        for i in range(len(problem.log_CH4)):
+            w.writerow([
+                problem.log_CH4[i],
+                problem.log_Tmax[i],
+                problem.log_Vcat[i],
+                problem.log_X[i][0],
+                problem.log_X[i][1],
+                problem.log_X[i][2],
+            ])
+
+    print("Saved ALL evaluated points to:", csv_all)
 
 if __name__ == "__main__":
     main()

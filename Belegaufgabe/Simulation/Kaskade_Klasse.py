@@ -1,6 +1,7 @@
 # cstr_cascade_model.py
 import math
 import cantera as ct
+import numpy as np
 
 cm = 0.01
 
@@ -129,7 +130,9 @@ class CSTRCascadeModel:
         _pc = ct.PressureController(r, downstream, primary=mfc, K=1e-5)
 
         sim = ct.ReactorNet([r])
-
+        sim.rtol = 1e-9
+        sim.atol = 1e-15
+        sim.max_steps = 200000
         # --- optional profiling buffers (per stage) ---
         profile = None
         if return_profile:
@@ -144,9 +147,11 @@ class CSTRCascadeModel:
                 profile["coverages"] = []
 
         # --- march through N CSTRs ---
+        Tmax = -1e300
         for i in range(self.n):
             sim.advance_to_steady_state()
-
+            if r.T > Tmax:
+                Tmax = r.T
             if profile is not None:
                 profile["stage"].append(i + 1)
                 profile["T"].append(r.T)
@@ -213,3 +218,8 @@ class CSTRCascadeModel:
         rel_violation = (vcat - Vcat_max) / (Vcat_max + 1e-30)
         penalty = 50.0 * rel_violation ** 2
         return ch4 + penalty
+
+    def Vcat(self, diameter_cm: float, porosity: float) -> float:
+        A_cs = (np.pi / 4.0) * (diameter_cm * cm) ** 2
+        V_bed = A_cs * self.length
+        return (1.0 - porosity) * V_bed
