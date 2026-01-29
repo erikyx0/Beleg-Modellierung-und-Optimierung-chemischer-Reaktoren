@@ -49,6 +49,8 @@ def main():
         diameter_cm=diameter_cm,
         porosity=porosity,
         return_profile=True,
+        T_amb_C=300,
+        U_W_m2K=100
     )
 
     profile = res["profile"]

@@ -75,6 +75,8 @@ class CSTRCascadeModel:
         diameter_cm: float,
         porosity: float,
         return_profile: bool = False,
+        T_amb_C: float | None = None,   # Umgebungstemp in °C; None => kein Wärmeaustausch
+        U_W_m2K: float = 0.0,           # Wärmeübergangskoeffizient
     ) -> dict:
         # --- geometry ---
         A_cs = self._area_from_diameter_cm(diameter_cm)
@@ -106,6 +108,21 @@ class CSTRCascadeModel:
         gas_out = ct.Solution(self.yaml_file, self.gas_name)
         gas_out.TPX = self.t0, self.p0, self.gas_comp
         downstream = ct.Reservoir(gas_out)
+
+        # --- optional heat loss to ambient via wall (non-adiabatic) ---
+        if T_amb_C is not None and U_W_m2K > 0.0:
+            T_amb = T_amb_C + 273.15
+
+            gas_amb = ct.Solution(self.yaml_file, self.gas_name)
+            gas_amb.TP = T_amb, self.p0
+            amb = ct.Reservoir(gas_amb)
+
+            # external heat-transfer area: cylinder mantle per stage
+            D = diameter_cm * cm
+            L_stage = self.length / self.n
+            A_ht = math.pi * D * L_stage  # [m^2]
+
+            wall = ct.Wall(r, amb, A=A_ht, U=U_W_m2K)
 
         # flow devices: fixed mdot, pressure-controlled outlet
         mfc = ct.MassFlowController(upstream, r, mdot=self.mdot)
