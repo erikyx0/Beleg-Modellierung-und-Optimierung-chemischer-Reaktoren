@@ -223,3 +223,4 @@ class CSTRCascadeModel:
         A_cs = (np.pi / 4.0) * (diameter_cm * cm) ** 2
         V_bed = A_cs * self.length
         return (1.0 - porosity) * V_bed
+#test

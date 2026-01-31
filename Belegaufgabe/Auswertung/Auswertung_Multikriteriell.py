@@ -55,7 +55,7 @@ ax.legend(loc="upper left")
 # === Zoom-Inset ===
 axins = inset_axes(
     ax,
-    width="50%",      # Größe des Zoom-Fensters
+    width="35%",      # Größe des Zoom-Fensters
     height="70%",
     loc="upper right", # Position im Plot
     borderpad=1
@@ -93,5 +93,5 @@ axins.grid()
 # Verbindung Hauptplot ↔ Zoom
 mark_inset(ax, axins, loc1=2, loc2=4, fc="none", ec="0.4")
 
-#plt.show()
-plt.savefig("img/Pareto_front_zoom", dpi=500)
+plt.show()
+#plt.savefig("img/Pareto_front_zoom", dpi=500)
