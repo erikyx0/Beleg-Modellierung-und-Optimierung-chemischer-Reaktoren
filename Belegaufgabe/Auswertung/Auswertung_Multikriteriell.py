@@ -93,4 +93,5 @@ axins.grid()
 # Verbindung Hauptplot ↔ Zoom
 mark_inset(ax, axins, loc1=2, loc2=4, fc="none", ec="0.4")
 
-plt.show()
+#plt.show()
+plt.savefig("img/Pareto_front_zoom", dpi=500)
