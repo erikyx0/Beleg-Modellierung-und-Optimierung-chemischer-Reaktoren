@@ -7,7 +7,7 @@ import cantera as ct
 from multiprocessing import freeze_support
 import csv
 
-from Kaskade_Klasse import CSTRCascadeModel, cm
+from Simulation.Kaskade_Klasse import CSTRCascadeModel, cm
 
 def main():
     os.chdir(os.path.dirname(__file__))
