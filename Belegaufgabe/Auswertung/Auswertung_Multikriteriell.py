@@ -2,6 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes, mark_inset
 
+import os 
+
+# Ordner wechseln, damit die CSV-Dateien gefunden werden
+os.chdir(os.path.dirname(__file__))
+
 colors = [
     "#4C72B0",
     "#DD8452",
