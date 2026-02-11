@@ -2,6 +2,9 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import os 
+
+os.chdir(os.path.dirname(__file__))
 
 CSV = "optimization_history_einkriteriell.csv"
 

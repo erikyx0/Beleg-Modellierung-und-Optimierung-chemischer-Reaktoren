@@ -7,7 +7,12 @@ import cantera as ct
 from multiprocessing import freeze_support
 import csv
 
-from Simulation.Kaskade_Klasse import CSTRCascadeModel, cm
+print(os.getcwd())
+
+# scirpt location 
+os.chdir(os.path.dirname(__file__))
+
+from Kaskade_Klasse import CSTRCascadeModel, cm
 
 def main():
     os.chdir(os.path.dirname(__file__))
@@ -33,7 +38,7 @@ def main():
         length_m=length,
         mass_flow_rate_kg_s=mass_flow_rate,
         n_cstr=n_cstr,
-        gas_comp="CH4:1, O2:0.6, AR:0.1",
+        gas_comp='CH4:1, O2:1.5, AR:0.1',
         energy_enabled=False,
         surface_name="Pt_surf",
         gas_name="gas",
@@ -84,5 +89,3 @@ def main():
 if __name__ == "__main__":
     freeze_support()  # safe on Windows; harmless otherwise
     main()
-
-
