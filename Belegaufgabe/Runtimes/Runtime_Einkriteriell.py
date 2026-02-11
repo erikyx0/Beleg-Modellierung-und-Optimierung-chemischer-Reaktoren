@@ -2,8 +2,10 @@ import time
 import statistics as stats
 import sys
 from pathlib import Path
+import os 
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
+os.chdir(os.path.dirname(__file__))
 
 from Simulation.optimize_kaskade_einkriteriell import main
 
