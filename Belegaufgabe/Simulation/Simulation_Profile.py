@@ -21,7 +21,7 @@ def main():
 
     gas_comp = "CH4:1, O2:0.6, AR:0.1"
 
-    cat_area_per_vol_per_cm = 200.0  # catalyst area per volume [1/cm] (your definition)
+    cat_area_per_vol_per_cm = 2000.0  # catalyst area per volume [1/cm] (your definition)
     diameter_cm = 2.0                # reactor diameter [cm]
     porosity = 0.40                  # void fraction [-]
 
