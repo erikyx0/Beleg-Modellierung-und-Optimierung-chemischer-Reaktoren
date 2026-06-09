@@ -1,0 +1,21 @@
+=== Ergebnisse Wärmeleitung ===
+
+Allgemeine Parameter:
+T_inf: 225 °C
+T_O: 20 °C
+alpha_i: 25 W/(m²K)
+
+Schichtaufbau (lambda, dicke):
+Schicht 1: lambda=20 W/(mK), dicke=0.06 m
+Schicht 2: lambda=0.04 W/(mK), dicke=0.03 m
+Schicht 3: lambda=0.6 W/(mK), dicke=0.04 m
+
+Ergebnisse:
+R_tot: 0.8596666666666667 (m²K)/W
+Wärmestromdichte q: 238.4645211322218 W/m²
+
+Temperaturen:
+Innenoberfläche T_S,i: 215.46141915471114 °C
+T1: 214.74602559131446 °C
+T2: 35.897634742148114 °C
+T3: 19.999999999999993 °C
