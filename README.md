@@ -1,22 +1,6 @@
-<<<<<<< HEAD
-# Beleg – Modellierung und Optimierung chemischer Reaktoren
-
-Dieses Repository enthält Skripte und Ausarbeitungen, die im Rahmen des Moduls  
-**„Modellierung und Optimierung chemischer Reaktoren“** erstellt wurden.
-
-## Inhalt
-- **Seminare**: ausgewählte Rechen- und Modellierungsaufgaben  
-- **Praktikum**: begleitende Skripte und Auswertungen  
-- **Belegarbeit**: vollständige Modellierung und Optimierungsaufgabe
-
-## Hinweise
-- Die Skripte wurden primär für Lehrzwecke erstellt und sind nicht als
-  allgemeingültige Simulationssoftware gedacht.
-- Teile der Seminare wurden in kommerzieller Software durchgeführt und sind
-  daher hier nicht enthalten.
-
-=======
 # Modellierung und Optimierung chemischer Reaktoren
+
+Dieses Repository ist im Modul "Modellierung und Optimierung chemischer Reaktoren" im Wintersemester 25/26 entstanden.
 
 Dieses Repository zeigt die **Modellierung, Simulation und Optimierung chemischer Reaktoren** mit Python und Cantera.  
 Der Fokus liegt auf der **Verknüpfung physikalischer Modelle mit numerischen Methoden und Optimierungsalgorithmen**.
@@ -103,4 +87,3 @@ Der Fokus liegt auf:
 - Die Inhalte wurden im Rahmen eines Universitätsmoduls erstellt  
 - Fokus liegt auf **Methodenverständnis und Modellierung**, nicht auf produktionsreifer Software  
 - Teile (z. B. kommerzielle Software) sind nicht im Repository enthalten  
->>>>>>> 010318d335d5c5362ea3475e8d8d444df4b874a5
